@@ -1,0 +1,14 @@
+apt-get install -y --no-install-recommends curl ca-certificates
+
+curl -sSLf https://snapshot.debian.org/archive/debian/20260327T023049Z/pool/main/z/zlib/zlib_1.3.dfsg%2Breally1.3.2.orig.tar.gz \
+| gunzip \
+| tee "$dir/orig.tar" \
+| tar --extract --strip-components 1 --directory "$dir/src"
+
+mkdir "$dir/src/debian"
+
+curl -sSLf https://snapshot.debian.org/archive/debian/20260402T023236Z/pool/main/z/zlib/zlib_1.3.dfsg%2Breally1.3.2-3.debian.tar.xz \
+| unxz \
+| tar --extract --strip-components 1 --directory "$dir/src/debian"
+
+version_suffix=gl0~bp1877
